@@ -5,6 +5,7 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <h1>Hello Next JS</h1>
+      <p>How are you? React</p>
     </div>
   );
 }
