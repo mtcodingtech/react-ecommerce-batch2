@@ -1,6 +1,6 @@
 ## Demo
 
-https://react-ecommerce-basic.vercel.app/
+https://react-ecommerce-batch2.vercel.app/
 
 ## Getting Started
 
