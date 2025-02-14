@@ -1,12 +1,12 @@
-"use client";
+"use client"
+import React from 'react'
+import { useParams } from 'next/navigation';
 
-import { useParams } from "next/navigation";
-import React from "react";
-
-function ProductDetail() {
-  const { id } = useParams();
-
-  return <div>ProductDetail Page {id}</div>;
+function page() {
+    const params = useParams();
+  return (
+    <div>Product detail {params.id}</div>
+  )
 }
 
-export default ProductDetail;
+export default page

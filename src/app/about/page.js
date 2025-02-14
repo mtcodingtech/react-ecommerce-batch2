@@ -1,10 +1,9 @@
-import CustomImage from "@/components/CustomImage";
-import React from "react";
+import React from 'react'
 
-function About() {
-  return <div>
-    <CustomImage />
-  </div>;
+function page() {
+  return (
+    <div>About Page</div>
+  )
 }
 
-export default About;
+export default page
