@@ -1,33 +1,38 @@
-// // "use client";
-// import { Container } from "@mui/material";
-// import React from "react";
-// // import { useParams } from "next/navigation";
+import { Container } from "@mui/material";
+import React from "react";
 
-// export default async function ProductDetail() {
-//   // const params = useParams();
-//   const data = await fetch(`https://dummyjson.com/products/1`);
-//   const result = await data.json();
-//   console.log("result<>>>", result)
-//   return <Container maxWidth="md">Product detail</Container>;
-// }
+export default async function ProductDetail(req, res) {
+  const params = req.params;
+  const searchParams = req.searchParams;
 
-"use client";
-import React, { useEffect } from "react";
-import { useParams } from "next/navigation";
+  const { id } = await params;
+  const data = await fetch(`https://dummyjson.com/products/${id}`);
+  const result = await data.json();
 
-function page() {
-  const { id } = useParams();
+  console.log("req>>>", req);
+  console.log("searchParams>>", await searchParams);
+  console.log("result>>>", result);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetch(`https://dummyjson.com/products/${id}`);
-      const result = await data.json();
-      console.log(result)
-    };
-    fetchData()
-  }, []);
-
-  return <div>page</div>;
+  return <Container maxWidth="md">Product detail {result.title}</Container>;
 }
 
-export default page;
+// "use client";
+// import React, { useEffect } from "react";
+// import { useParams } from "next/navigation";
+
+// function page() {
+//   const { id } = useParams();
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       const data = await fetch(`https://dummyjson.com/products/${id}`);
+//       const result = await data.json();
+//       console.log(result)
+//     };
+//     fetchData()
+//   }, []);
+
+//   return <div>page</div>;
+// }
+
+// export default page;

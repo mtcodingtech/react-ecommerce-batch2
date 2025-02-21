@@ -11,6 +11,7 @@ import Container from "@mui/material/Container";
 import Slide from "@mui/material/Slide";
 import { Fab, Fade } from "@mui/material";
 import { KeyboardArrowUp } from "@mui/icons-material";
+import CustomCart from "./CustomCart";
 
 function ScrollTop(props) {
   const { children, window } = props;
@@ -77,10 +78,11 @@ export default function CustomAppBar(props) {
       <CssBaseline />
       <HideOnScroll {...props}>
         <AppBar>
-          <Toolbar>
+          <Toolbar sx={{justifyContent: "space-between"}}>
             <Typography variant="h6" component="div">
-              Scroll to hide App bar
+             Shopping
             </Typography>
+            <CustomCart />
           </Toolbar>
         </AppBar>
       </HideOnScroll>
