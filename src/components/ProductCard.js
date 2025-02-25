@@ -3,8 +3,17 @@ import Image from "next/image";
 import React from "react";
 import Grid from "@mui/material/Grid2";
 import Link from "next/link";
+import {
+  addToCart,
+  decreaseQuantity,
+  increaseQuantity,
+} from "@/redux/productSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function ProductCard({ product }) {
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.productSlice.cart);
+
   return (
     <>
       <Grid
@@ -41,7 +50,11 @@ function ProductCard({ product }) {
               width: "100%",
             }}
           >
-            <Button size="small" variant="contained">
+            <Button
+              size="small"
+              variant="contained"
+              onClick={() => dispatch(addToCart(product.id))}
+            >
               Add to Cart
             </Button>
             <Link href={`/products/${product.id}`}>
@@ -50,6 +63,19 @@ function ProductCard({ product }) {
               </Button>
             </Link>
           </Box>
+          <div>
+    
+              <div>
+                <button disabled={cart[product.id] ? false: true} onClick={() => dispatch(decreaseQuantity(product.id))}>
+                  -
+                </button>
+                <span>{cart[product.id] || 0} </span>
+                <button disabled={cart[product.id] ? false: true} onClick={() => dispatch(increaseQuantity(product.id))}>
+                  +
+                </button>
+              </div>
+            
+          </div>
         </Card>
       </Grid>
     </>

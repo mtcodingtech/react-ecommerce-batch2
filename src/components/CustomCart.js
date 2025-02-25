@@ -1,13 +1,18 @@
-import * as React from 'react';
-import Badge from '@mui/material/Badge';
-import MailIcon from '@mui/icons-material/Mail';
-import { Shop, ShoppingCart } from '@mui/icons-material';
-import { red } from '@mui/material/colors';
+import * as React from "react";
+import Badge from "@mui/material/Badge";
+import Link from "next/link";
+import { useSelector } from "react-redux";
+import { ShoppingCart } from "@mui/icons-material";
 
 export default function CustomCart() {
+  const cart = useSelector((state) => state.productSlice.cart);
+  const totalCount = Object.values(cart).length;
+
   return (
-    <Badge badgeContent={4} color={'warning'}>
-      <ShoppingCart sx={{color: "#fff"}} />
+    <Badge badgeContent={totalCount} color={"warning"}>
+      <Link href={"/checkout"}>
+        <ShoppingCart sx={{ color: "#fff" }} />
+      </Link>
     </Badge>
   );
 }

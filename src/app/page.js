@@ -2,6 +2,7 @@ import ProductCard from "@/components/ProductCard";
 import React from "react";
 import Grid from "@mui/material/Grid2";
 import { Container } from "@mui/material";
+import ProductCards from "@/components/ProductCards";
 
 export default async function Page() {
   const data = await fetch("https://dummyjson.com/products");
@@ -10,11 +11,7 @@ export default async function Page() {
   return (
     <Container maxWidth="md">
       <Grid container spacing={2}>
-        {products.map((product) => (
-          <React.Fragment key={product.id}>
-            <ProductCard product={product} />
-          </React.Fragment>
-        ))}
+      <ProductCards products={products}></ProductCards>
       </Grid>
     </Container>
   );
