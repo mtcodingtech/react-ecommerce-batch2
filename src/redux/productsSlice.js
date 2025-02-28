@@ -12,11 +12,24 @@ const productsSlice = createSlice({
     },
     addToCart: (state, action) => {
       const id = action.payload;
+      state.cart[id] = (state.cart[id] || 0) + 1;
+    },
+    increaseQuantity: (state, action) => {
+      const id = action.payload;
       if (state.cart[id]) {
-        state.cart[id] = (state.cart[id] || 0) + 1;
+        state.cart[id] += 1;
+      }
+    },
+    decreaseQuantity: (state, action) => {
+      const id = action.payload;
+      if (state.cart[id] > 1) {
+        state.cart[id] -= 1;
+      } else {
+        delete state.cart[id];
       }
     },
   },
 });
-export const { setProducts, addToCart } = productsSlice.actions;
+export const { setProducts, addToCart, increaseQuantity, decreaseQuantity } =
+  productsSlice.actions;
 export default productsSlice.reducer;

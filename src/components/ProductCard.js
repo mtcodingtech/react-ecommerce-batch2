@@ -6,11 +6,16 @@ import React from "react";
 import Grid from "@mui/material/Grid2";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "@/redux/productsSlice";
+import {
+  addToCart,
+  decreaseQuantity,
+  increaseQuantity,
+} from "@/redux/productsSlice";
 
 function ProductCard({ product }) {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.productItems.cart);
+
   return (
     <>
       <Grid
@@ -60,6 +65,27 @@ function ProductCard({ product }) {
               </Button>
             </Link>
           </Box>
+          {cart[product.id] && (
+            <Box>
+              <Button
+                variant="contained"
+                size="small"
+                onClick={() => dispatch(decreaseQuantity(product.id))}
+              >
+                -
+              </Button>
+              <Typography component={"span"} sx={{ mx: 2 }}>
+                {cart[product.id]}
+              </Typography>
+              <Button
+                variant="contained"
+                size="small"
+                onClick={() => dispatch(increaseQuantity(product.id))}
+              >
+                +
+              </Button>
+            </Box>
+          )}
         </Card>
       </Grid>
     </>
