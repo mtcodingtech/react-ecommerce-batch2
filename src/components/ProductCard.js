@@ -1,10 +1,16 @@
+"use client";
+
 import { Box, Button, Card, Typography } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 import Grid from "@mui/material/Grid2";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "@/redux/productsSlice";
 
 function ProductCard({ product }) {
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.productItems.cart);
   return (
     <>
       <Grid
@@ -41,7 +47,11 @@ function ProductCard({ product }) {
               width: "100%",
             }}
           >
-            <Button size="small" variant="contained">
+            <Button
+              size="small"
+              variant="contained"
+              onClick={() => dispatch(addToCart(product.id))}
+            >
               Add to Cart
             </Button>
             <Link href={`/products/${product.id}`}>
